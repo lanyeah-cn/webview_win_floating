@@ -41,6 +41,11 @@ class _MyAppState extends State<MyApp> {
       onWebResourceError: (error) =>
           print("onWebResourceError: ${error.description}"),
     ));
+    controller.addJavaScriptChannel('NativeProxy',
+        onMessageReceived: (JavaScriptMessage jsMsg) {
+      String message = jsMsg.message;
+      print(message);
+    });
     controller.loadRequest(Uri.parse("https://www.google.com/"));
   }
 

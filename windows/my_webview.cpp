@@ -386,7 +386,7 @@ HRESULT MyWebViewImpl::addScriptChannelByName(LPCWSTR channelName)
 
     WCHAR script[100];
     if (wcslen(channelName) > 30) return E_FAIL;
-    wsprintf(script, L"const %s = new JkChannel('%s');", channelName, channelName);
+    wsprintf(script, L"const %s = new JkChannel('%s');window.%s = %s", channelName, channelName, channelName, channelName);
 
     return m_pWebview->AddScriptToExecuteOnDocumentCreated(script, Callback<ICoreWebView2AddScriptToExecuteOnDocumentCreatedCompletedHandler>(
         [=](HRESULT error, PCWSTR id) -> HRESULT {
